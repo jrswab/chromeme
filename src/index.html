@@ -8,35 +8,27 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <div id="top">
-      <br />
-      <div id="imgOut"></div>
-      <br />
-      To send images over chats:<br />
-      Right Click -> Copy Image<br />
-      <br />
-    </div>
+    <div id="top"></div>
 
     <div id="mid">
-
-      <div id="midTop">
-        <h2>Create Yo Dankest Meme:</h2>
-        Meme (copy name from below):<input id="image" type="text"><br>
-        Top Text: <input id="topText" type="text"><br>
-        Bottom Text: <input id="bottomText" type="text"><br><br>
-        <button id="memeButton" type="button" class="btn btn-outline-success">
-          Create My Dank Meme!
-        </button>
-      </div>
-
-      <div id="midBottom">
-        <h2>Avalible Images:</h2>
-        <div id="imageNames"></div>
-      </div>
-
+      <h2>Create Yo Dankest Meme:</h2>
+      Meme: <select id="image"></select><br>
+      Top Text: <input id="topText" type="text"><br>
+      Bottom Text: <input id="bottomText" type="text"><br><br>
+      <button id="memeButton" type="button" class="btn btn-outline-success btn-lg btn-block">
+        Create My Dank Meme!
+      </button>
     </div>
 
-    <div id="bot"></div>
+    <div id="bot">
+      <br />
+      <div id="imgOut"></div>
+      <div id="fakeProgress" class="spinner-border text-secondary" role="status"
+        style="display: none; width: 200px; height: 200px;">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
   </body>
   <script src="background.js" type="text/javascript"></script>
 </html>

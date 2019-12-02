@@ -1,14 +1,19 @@
+// Global map for pass by reference.
 let nameData = new Map();
+
 // Executes when the extension button is clicked.
 chrome.browserAction.onClicked.addListener(function(activeTab) {
   chrome.tabs.create({ url: "index.html" });
 });
 
+// Wait for the page to load befor setting event listeners and loading
+// meme data.
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById("memeButton").addEventListener("click", createMeme);
   getMemeNames('https://memegen.link/api/templates/');
 });
 
+// Get all the meme titles and URLs from the meme.link API
 function getMemeNames(url){
   nameData.clear();
   let memeNames = [];
@@ -30,23 +35,40 @@ function getMemeNames(url){
   xhr.send();
 }
 
+// Function runs on button click.
 function createMeme() {
+  document.getElementById("fakeProgress").style.display = "block";
   let top = document.getElementById("topText").value;
   let bottom = document.getElementById("bottomText").value;
   let imgName = document.getElementById("image").value;
   let imgCode = nameData.get(imgName);
 
-  const regex = /[a-z]*$/gm;
+  const regex = /[a-z\-]*$/gm;
   let img = regex.exec(imgCode);
-  console.log(img);
 
   document.getElementById("imgOut").innerHTML =
-    '<img src="https://memegen.link/'+img+'/'+top+'/'+bottom+'.jpg" />';
+    '<img id="meme" src="https://memegen.link/'+img+'/'+encodeURIComponent(top)+'/'+encodeURIComponent(bottom)+'.jpg" />';
+  
+  checkImage();
 }
 
+
+// Loads the titles from the API to give the user the correct names to input.
 function displayNames(memeNames) {
-  let nameList = document.getElementById("imageNames");
-  for(let i = 0; i < memeNames.length; i++) {
-    nameList.innerHTML = nameList.innerHTML + memeNames[i] + '<br />';
+  select = document.getElementById('image');
+  for (let i = 0; i < memeNames.length; i++){
+      let opt = document.createElement('option');
+      opt.value = memeNames[i];
+      opt.innerHTML = memeNames[i];
+      select.appendChild(opt);
+  }
+}
+
+// Hide the progress bar after image loads.
+function checkImage() {
+  if (document.getElementById("meme").complete) {
+    document.getElementById("fakeProgress").style.display = "none";
+  } else {
+    setTimeout(checkImage, 100);
   }
 }

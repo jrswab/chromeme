@@ -16,17 +16,6 @@ body {
   align-items: center;
 }
 
-#midTop {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-}
-
-#midBottom {
-  display: grid;
-  justify-content: center;
-}
-
 #imageNames {
   column-count: 3;
 }
