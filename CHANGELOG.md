@@ -6,7 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unrleased]
 
-## 1.0.0 - December 2nd, 2019
+## 1.0.1
+
+### Changed
+
+- HTML/CSS slightly
+- README to include install instructions.
+
+## 1.0.0
 
 ### Added
+
 - Map to call correct api name from api template list.

@@ -16,13 +16,13 @@ body {
   align-items: center;
 }
 
-#midRight {
+#midTop {
   display: grid;
   justify-content: center;
   align-items: center;
 }
 
-#midLeft {
+#midBottom {
   display: grid;
   justify-content: center;
 }
